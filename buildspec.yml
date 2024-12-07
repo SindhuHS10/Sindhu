@@ -5,11 +5,21 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
-      - npm install
+      - echo "Installing dependencies..."
+      - npm install  # Installs dependencies defined in package.json
+
   build:
     commands:
-      - npm run build
+      - echo "No build step required, skipping build phase"
+
+  post_build:
+    commands:
+      - echo "Build complete"
+      - echo "Application is ready to deploy"
+
 artifacts:
   files:
-    - '**/*'
-  discard-paths: yes
+    - server.js
+    - package.json
+    - package-lock.json
+    - node_modules/**/*
